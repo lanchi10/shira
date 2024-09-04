@@ -102,6 +102,52 @@
         .thanks-section strong {
             color: var(--accent-color);
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .certificate-link {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .certificate-link:hover {
+            background-color: #2980b9;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -115,6 +161,8 @@
     <div class="container">
         <h2>הישג אקדמי מרשים</h2>
         <p>אנו שמחים לבשר כי ועדת המשנה של בית הספר ללימודים מתקדמים של אוניברסיטת בר-אילן אישרה בתאריך 01/09/2024 את הדיסרטציה של ד"ר שירה רמות. לאחר השלמת כל הדרישות, ד"ר רמות זכאית לתואר "דוקטור לפילוסופיה".</p>
+        
+        <a href="#" class="certificate-link" id="certificateLink">צפייה באישור הזכאות לתואר</a>
 
         <h2>על המחקר</h2>
         <p>ד"ר רמות ערכה מחקר השוואתי מעמיק בין עובדי מערכת הבריאות לבין הציבור הרחב כלפי שלוש טכנולוגיות רפואיות חדשניות. מחקרה מתמקד בניתוח התפיסות, הערכות הסיכונים, והאמון שמביעים שני הקהלים המרכזיים הללו כלפי חידושים רפואיים.</p>
@@ -164,10 +212,35 @@
         <a href="mailto:shira.ramot@example.com" class="cta-button">שלחו אימייל</a>
     </div>
 
+    <div id="certificateModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="certificateImg">
+    </div>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 ד"ר שירה רמות. כל הזכויות שמורות.</p>
         </div>
     </footer>
-</body>
-</html>
+
+    <script>
+        var modal = document.getElementById("certificateModal");
+        var link = document.getElementById("certificateLink");
+        var span = document.getElementsByClassName("close")[0];
+        var modalImg = document.getElementById("certificateImg");
+
+        link.onclick = function() {
+            modal.style.display = "block";
+            modalImg.src = "https://lanchi10.github.io/shira/images/shiradr.jpg";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
